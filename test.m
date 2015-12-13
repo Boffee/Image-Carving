@@ -33,7 +33,7 @@ figure(), imshow(I);
 % I = kInsertVertical(I, 100);
 
 [ho, wo, bo] = size(I);
-Iresize = imageResize(I, ho+50, wo-50);
+Iresize = imageResize(I, ho-50, wo+50);
 figure(), imshow(Iresize);
 
 % Iamp = contentAmplify(I,1.2);
