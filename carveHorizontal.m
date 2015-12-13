@@ -11,7 +11,7 @@ method = 'sobel';
 Gx = sqrt(Gx(:,:,1).^2+Gx(:,:,2).^2+Gx(:,:,3).^2);
 Gy = sqrt(Gy(:,:,1).^2+Gy(:,:,2).^2+Gy(:,:,3).^2);
 G = Gx + Gy;
-G([1 end],:) = 1e10;
+% G([1 end],:) = 1e10;
 
 
 %% L1 norm gradient - bw
