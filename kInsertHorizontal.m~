@@ -15,25 +15,23 @@ for i = 1:numel(carved_seams)
         seam = allocateSeamSpace(seam, inserted_seams{j});
     end
     I = allocateSeamSpace(I, seam);
-%     seam = rgb2gray(seam) > 0;
-%     seam = cat(3, seam, zeros(size(seam)), seam);
     I = I + seam;
-    if max(seam(1,:)) == 1
-        % current seam touch the top boundary, so insert below
-        seam = [zeros(1,size(seam,2),3); seam];
-        insert_seam = (seam + ...
-            maskImage([I;zeros(1,size(I,2),3)], (rgb2gray(seam) > 0)))/2;
-    else
-        % insert above
-        seam = [seam; zeros(1,size(seam,2),3)];
-        insert_seam = (seam + ...
-            maskImage([zeros(1,size(I,2),3);I], (rgb2gray(seam) > 0)))/2;
-    end
-    insert_seam = rgb2gray(insert_seam) > 0;
-    insert_seam = cat(3, insert_seam, zeros(size(insert_seam)), zeros(size(insert_seam)));
-    inserted_seams = cat(1, {insert_seam}, inserted_seams);
-    I = allocateSeamSpace(I, insert_seam);
-    I = I + insert_seam;
+%     if max(seam(1,:)) == 1
+%         % current seam touch the top boundary, so insert below
+%         seam = [zeros(1,size(seam,2),3); seam];
+%         insert_seam = (seam + ...
+%             maskImage([I;zeros(1,size(I,2),3)], (rgb2gray(seam) > 0)))/2;
+%     else
+%         % insert above
+%         seam = [seam; zeros(1,size(seam,2),3)];
+%         insert_seam = (seam + ...
+%             maskImage([zeros(1,size(I,2),3);I], (rgb2gray(seam) > 0)))/2;
+%     end
+% %     insert_seam = rgb2gray(insert_seam);
+% %     insert_seam = cat(3, insert_seam, zeros(size(insert_seam)), zeros(size(insert_seam)));
+%     inserted_seams = cat(1, {insert_seam}, inserted_seams);
+%     I = allocateSeamSpace(I, insert_seam);
+%     I = I + insert_seam;
 end
 
 end
