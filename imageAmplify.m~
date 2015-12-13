@@ -1,0 +1,6 @@
+function I = imageAmplify(I)
+
+I = kCarveHorizontal(I, k);
+I = kCarveVertical(I, k);
+
+end

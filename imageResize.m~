@@ -1,0 +1,17 @@
+function I = imageResize(I, h, w)
+
+[ho wo bo] = size(I);
+
+r = h-ho;
+c = w-wo;
+
+if r < c
+    if r > 0
+        I = kInsertHorizontal(I, abs(r));
+    else
+        I = kcarveHorizontal(I, abs(r));
+    end
+else
+    
+
+end
