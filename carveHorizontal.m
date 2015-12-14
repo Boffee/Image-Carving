@@ -1,5 +1,8 @@
-function [I, remove] = carveHorizontal(I)
+function [I, remove, grad_mask] = carveHorizontal(I, grad_mask)
 
+if nargin == 1
+    grad_mask = zeros(size(I,1),size(I,2));
+end
 
 method = 'sobel';
 
@@ -12,7 +15,8 @@ Gx = sqrt(Gx(:,:,1).^2+Gx(:,:,2).^2+Gx(:,:,3).^2);
 Gy = sqrt(Gy(:,:,1).^2+Gy(:,:,2).^2+Gy(:,:,3).^2);
 G = Gx + Gy;
 % G([1 end],:) = 1e10;
-
+G = G-1e10*grad_mask;
+% G = min(G.*~grad_mask, G-5*mean(mean(G))*grad_mask);
 
 %% L1 norm gradient - bw
 % [Gx, Gy] = imgradientxy(rgb2gray(I), method);
@@ -33,6 +37,11 @@ G = Gx + Gy;
 %     G = G - keep - remove + [keep(2:end,:,:); zeros(1,size(keep,2))];
 %     G = G(1:size(G,1)-1,:,:);
 % end
+
+keep = maskImage(grad_mask, mask);
+remove = maskImage(grad_mask, seam_mask);
+grad_mask = grad_mask - keep - remove + [keep(2:end,:); zeros(1,size(keep,2))];
+grad_mask = grad_mask(1:size(grad_mask,1)-1,:);
 
 keep = maskImage(I, mask);
 remove = maskImage(I, seam_mask);

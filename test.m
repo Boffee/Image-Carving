@@ -9,8 +9,9 @@ path = 'path.jpg';
 painting = 'painting.jpg';
 ship = 'ship.jpg';
 colosseum = 'colosseum.jpg';
+eiffel = 'eiffel.jpg';
 
-I = im2double(imread(ship));
+I = im2double(imread(eiffel));
 [ho, wo, bo] = size(I);
 figure(), imshow(I);
 

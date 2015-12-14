@@ -1,0 +1,10 @@
+function I=imageRemove(I,direction)
+grad_ = ~getMask(I);
+h = max(sum(mask, 1));
+w = max(sum(mask, 2));
+
+if direction == 'v'
+    I = kRemoveHorizontal(I, h, mask);
+else
+    I = kRemoveVertical(I, w, mask);
+end

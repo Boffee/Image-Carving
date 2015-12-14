@@ -4,7 +4,9 @@ h = max(sum(obj_mask, 1));
 w = max(sum(obj_mask, 2));
 
 if direction == 'v'
-    I = kRemoveHorizontal(I, h, mask);
+    I = kCarveHorizontal(I, h, obj_mask);
+%     I = kInsertHorizontal(I, h);
 else
-    I = kRemoveVertical(I, w, mask);
+    I = kCarveVertical(I, w, obj_mask);
+%     I = kInsertVertical(I, w);
 end

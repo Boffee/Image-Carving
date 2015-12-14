@@ -1,8 +1,10 @@
-function I = kCarveVertical(I, k)
+function I = kCarveVertical(I, k, grad_mask)
 
 I = cat(3,I(:,:,1)',I(:,:,2)',I(:,:,3)');
-for i = 1:k
-    I = carveHorizontal(I);
+if nargin < 3
+    I = kCarveHorizontal(I, k);
+else
+    I = kCarveHorizontal(I, k, grad_mask');
 end
 I = cat(3,I(:,:,1)',I(:,:,2)',I(:,:,3)');
 
