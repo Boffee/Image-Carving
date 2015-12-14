@@ -1,7 +1,7 @@
 %% read file
 f1 = 'wave.png';
 f2 = 'bubble.jpg';
-f3 = 'lake_small.jpg';
+f3 = 'lake.jpg';
 f4 = 'space_shuttle.jpg';
 f5 = 'atlantis.jpg';
 
@@ -10,7 +10,7 @@ painting = 'painting.jpg';
 ship = 'ship.jpg';
 colosseum = 'colosseum.jpg';
 
-I = im2double(imread(colosseum));
+I = im2double(imread(ship));
 [ho, wo, bo] = size(I);
 figure(), imshow(I);
 
@@ -29,3 +29,7 @@ figure(), imshow(Iresize);
 %% amplify
 Iamp = contentAmplify(I,1.2);
 figure(), imshow(Iamp);
+
+%% object removal
+Iremove = imageRemove(I,'h');
+figure(), imshow(Iremove);
